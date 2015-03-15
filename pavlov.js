@@ -8,7 +8,8 @@
 Experiment.setInformation({
 	title: "PAVLOV'S PUG",
 	description: "Meet Puddles. Her favorite food is chicken. She drools <i>waterfalls</i> whenever she smells chicken. "+
-		"Play around! Experiment with the bell & chicken-dispenser-button.",
+		"Play around! Experiment with the bell & chicken-dispenser-button.<br><br>"+
+		"(after you do a task & see what happens, click the task to see <i>why</i> it happens)",
 	qa:[
 		{
 			q:"Ring the bell. What happens?",
@@ -202,7 +203,7 @@ function Pug(){
 
 	self.timer = -1;
 
-	subscribe("/click/bell", function(msg){
+	subscribe("/neuron/bell", function(msg){
 		if(self.currentFrame!=0) return;
         self.currentFrame = 1;
         self.timer = 10;

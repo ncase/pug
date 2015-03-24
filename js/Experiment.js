@@ -15,34 +15,38 @@ Math.TAU = Math.PI*2;
 
 	var infoContainerDOM = document.getElementById("info_container");
 	var infoDOM = document.getElementById("info");
-	Experiment.addInformation = function(text){
+	Experiment.addInformation = function(text,delay){
 
-		// Create Paragraph
-		var paragraph = document.createElement("p");
-		paragraph.innerHTML = text;
-
-		// Append Paragraph
-		//paragraph.style.left = "350px";
-		paragraph.style.opacity = 0;
-		infoDOM.appendChild(paragraph);
 		setTimeout(function(){
-			//paragraph.style.left = "0px";
-			paragraph.style.opacity = 1;
-		},1);
 
-		// Scroll to bottom
-		var start = infoContainerDOM.scrollTop;
-		var end = infoContainerDOM.scrollHeight - infoContainerDOM.offsetHeight;
-		var t = 0;
-		var animLoop = setInterval(function(){
-			
-			t+=3/60;
-			var t2 = (1-Math.cos(t*Math.PI))/2;
-			infoContainerDOM.scrollTop = start*(1-t2) + end*t2;
-			
-			if(t>=1) clearInterval(animLoop);
+			// Create Paragraph
+			var paragraph = document.createElement("p");
+			paragraph.innerHTML = text;
 
-		},1000/60);
+			// Append Paragraph
+			//paragraph.style.left = "350px";
+			paragraph.style.opacity = 0;
+			infoDOM.appendChild(paragraph);
+			setTimeout(function(){
+				//paragraph.style.left = "0px";
+				paragraph.style.opacity = 1;
+			},1);
+
+			// Scroll to bottom
+			var start = infoContainerDOM.scrollTop;
+			var end = infoContainerDOM.scrollHeight - infoContainerDOM.offsetHeight;
+			var t = 0;
+			var animLoop = setInterval(function(){
+				
+				t+=3/60;
+				var t2 = (1-Math.cos(t*Math.PI))/2;
+				infoContainerDOM.scrollTop = start*(1-t2) + end*t2;
+				
+				if(t>=1) clearInterval(animLoop);
+
+			},1000/60);
+
+		},delay ? delay : 800);
 		
 
 	};
@@ -51,7 +55,7 @@ Math.TAU = Math.PI*2;
 
 		// Title
 		var html = "";
-		html += "<span id='title'>"+config.title+"</span>";
+		html += "<p id='title'>"+config.title+"</p>";
 
 		// Paragraphs
 		for(var i=0;i<config.paragraphs.length;i++){

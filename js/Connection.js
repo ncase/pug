@@ -19,13 +19,19 @@ function Connection(config){
 	};
 
 	// Update
+	self.timeoutGrowth = 0;
 	self.update = function(){
 
 		// Check from & to's connection
 		var from = Neuron[self.from];
 		var to = Neuron[self.to];
-		if(from.connectionMode==1 && to.connectionMode==-1){
-			self.strength += 0.06; // should connect in three tries
+		if(from.connectionMode==1 && to.connectionMode==-1 && self.timeoutGrowth==0){
+			self.strength += 0.34; // should connect in three tries
+			self.timeoutGrowth = 100;
+			publish("/connect/"+self.from+"-"+self.to, [self.strength]);
+		}
+		if(self.timeoutGrowth>0){
+			self.timeoutGrowth--;
 		}
 
 		// Strength boundaries

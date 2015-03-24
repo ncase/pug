@@ -8,8 +8,8 @@
 Experiment.setInformation({
 	title: "PAVLOV'S PUG",
 	paragraphs: [
-		"Meet Puddles. Her favorite food is chicken. She drools <i>waterfalls</i> whenever she smells chicken. "+
-		"Play around! Experiment with the bell & chicken-dispenser-button."
+		"Meet Puddles. She freaking loves chicken. "+
+		"Play around with the bell & chicken-dispenser-button!"
 	]
 	/*description: "Meet Puddles. Her favorite food is chicken. She drools <i>waterfalls</i> whenever she smells chicken. "+
 		"Play around! Experiment with the bell & chicken-dispenser-button.<br><br>"+
@@ -58,6 +58,97 @@ Experiment.setInformation({
 		}
 	]*/
 });
+
+var $ = {
+	heard_bell: 0,
+	ate_meat: 0,
+	bell_meat_connected: 0,
+	classical_lesson: 0
+};
+
+subscribe("/neuron/bell", function(){
+
+	// Classical Lesson
+	
+	if($.classical_lesson==0 && $.bell_meat_connected>0){
+
+		$.classical_lesson=1;
+
+		Experiment.addInformation(
+			"And here we come to an interesting result-- "+
+			"Puddles drools simply at the sound of the bell, <i>without</i> seeing the meat! "+
+			//"(Note that the 'drool' neuron fires less intensely than if Puddles is directly exposed to meat) "+
+			"This is the crucial lesson that Ivan Pavlov learnt in his original experiments, "+
+			"and it's called Classical Conditioning. "+
+			"<br><br>"+
+			"<b>[end of lesson]</b>",
+		4000);
+
+	}
+
+
+	// In the beginning...
+	
+	if($.heard_bell==0){
+		var info = "Puddles's 'bell' neuron fires! But she doesn't associate the bell with anything (yet), "+
+			"so she does nothing."
+		if($.ate_meat>0){
+			info += "<br><br>But remember, cells that fire together wire together...";
+		}
+		Experiment.addInformation(info);
+	}else if($.heard_bell==1 && $.ate_meat==0){
+		Experiment.addInformation("Nope. Still nothing.");
+	}else{
+		return false;
+	}
+	$.heard_bell++;
+
+});
+subscribe("/eat/meat", function(){
+
+	if($.ate_meat==0){
+		var info = "When the 'meat' neuron fires, it triggers the connected 'drool' neuron. "+
+			"That's a natural response. "+
+			"Then Puddles swallows it bones and all. "+
+			"That's an unnatural response.";
+		if($.heard_bell>0){
+			info += "<br><br>Now remember, cells that fire together wire together...";
+		}
+		Experiment.addInformation(info);
+	}else if($.ate_meat==1 && $.heard_bell==0){
+		Experiment.addInformation("You're weird, Puddles.");
+	}else{
+		return false;
+	}
+	$.ate_meat++;
+	
+});
+
+subscribe("/connect/bell-meat",function(strength){
+
+	if($.heard_bell==0 || $.ate_meat==0) return false;
+	if($.bell_meat_connected>0) return false;
+
+	if(strength<0.4){
+		Experiment.addInformation(
+			"Aha! Puddles is starting to learn that 'bell' is soon followed by 'meat'. "+
+			"Just need to teach her the lesson a couple more times before it sinks in."
+		,1000);
+	}else if(strength<0.8){
+		Experiment.addInformation("Almost there...",1000);
+	}else if(strength>=1){
+		$.bell_meat_connected = 1;
+		Experiment.addInformation("Yay! They're connected. "+
+			"Now, think about what would happen if you just rang the bell, then do that."
+		,1000);
+	}
+
+
+});
+
+
+
+////////////////////
 
 function reset(){
 	
@@ -158,6 +249,7 @@ function Meat(){
 		}
 	};
 	self.eat = function(){
+		publish("/eat/meat");
 		if(self.playingMode==2){
 			self.playingMode = 3;
 			self.currentFrame=29;
@@ -207,17 +299,17 @@ function Pug(){
 
 	self.timer = -1;
 
-	subscribe("/neuron/bell", function(msg){
+	subscribe("/neuron/bell", function(){
 		if(self.currentFrame!=0) return;
         self.currentFrame = 1;
         self.timer = 10;
     });
-	subscribe("/neuron/meat", function(msg){
+	subscribe("/neuron/meat", function(){
 		if(self.currentFrame!=0) return;
         self.currentFrame = 2;
         self.timer = 10;
     });
-    subscribe("/neuron/drool", function(msg){
+    subscribe("/neuron/drool", function(){
         self.currentFrame = 3;
         self.timer = 30;
     });

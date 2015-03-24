@@ -7,7 +7,11 @@
 ***/
 Experiment.setInformation({
 	title: "PAVLOV'S PUG",
-	description: "Meet Puddles. Her favorite food is chicken. She drools <i>waterfalls</i> whenever she smells chicken. "+
+	paragraphs: [
+		"Meet Puddles. Her favorite food is chicken. She drools <i>waterfalls</i> whenever she smells chicken. "+
+		"Play around! Experiment with the bell & chicken-dispenser-button."
+	]
+	/*description: "Meet Puddles. Her favorite food is chicken. She drools <i>waterfalls</i> whenever she smells chicken. "+
 		"Play around! Experiment with the bell & chicken-dispenser-button.<br><br>"+
 		"(after you do a task & see what happens, click the task to see <i>why</i> it happens)",
 	qa:[
@@ -52,7 +56,7 @@ Experiment.setInformation({
 				"The more senses you involve in something, the more vivid your later memories of it will be, "+
 				"as it was in Puddles right there."
 		}
-	]
+	]*/
 });
 
 function reset(){

@@ -92,6 +92,7 @@ body {
 	right: 0px;
 	top: 5px;
 
+	overflow-x: hidden;
 	overflow-y: scroll;
 
 	/*text-align: justify;*/
@@ -105,39 +106,12 @@ body {
 .experiment #info span{
 	color:#fff;
 }
-.experiment #info .qa{
-	margin-bottom: 20px;
-}
-.experiment #info .qa > #q{
-	padding: 10px;
-	width: 250px;
-	background: #fff;
-	color: #333;
-	text-align: center;
-	font-weight: 500;
-	cursor: pointer;
-}
-.experiment #info .qa > #a{
-	
-	padding: 10px 10px;
-	max-height: 0px;
-
-	width: 250px;
-	background: #444;
-	text-align: left;
-	overflow: hidden;
-
-	-webkit-transition: all 0.2s linear;
-    -moz-transition: all 0.2s linear;
-    -o-transition: all 0.2s linear;
-    transition: all 0.2s linear;
-
-}
-.experiment #info .qa[show=yes] > #a{
-	max-height: 300px;
-}
-.experiment #info .qa[show=no] > #a{
-	padding: 0 10px;
+.experiment #info p{
+	position: relative;
+	-webkit-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    transition: all 1s ease-out;
 }
 .experiment #info #title{
 	font-size: 35px;

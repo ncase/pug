@@ -13,26 +13,54 @@ Math.TAU = Math.PI*2;
 		}
 	};
 
+	var infoContainerDOM = document.getElementById("info_container");
+	var infoDOM = document.getElementById("info");
+	Experiment.addInformation = function(text){
+
+		// Create Paragraph
+		var paragraph = document.createElement("p");
+		paragraph.innerHTML = text;
+
+		// Append Paragraph
+		//paragraph.style.left = "350px";
+		paragraph.style.opacity = 0;
+		infoDOM.appendChild(paragraph);
+		setTimeout(function(){
+			//paragraph.style.left = "0px";
+			paragraph.style.opacity = 1;
+		},1);
+
+		// Scroll to bottom
+		var start = infoContainerDOM.scrollTop;
+		var end = infoContainerDOM.scrollHeight - infoContainerDOM.offsetHeight;
+		var t = 0;
+		var animLoop = setInterval(function(){
+			
+			t+=3/60;
+			var t2 = (1-Math.cos(t*Math.PI))/2;
+			infoContainerDOM.scrollTop = start*(1-t2) + end*t2;
+			
+			if(t>=1) clearInterval(animLoop);
+
+		},1000/60);
+		
+
+	};
+
 	Experiment.setInformation = function(config){
 
+		// Title
 		var html = "";
-
-		// TITLE
 		html += "<span id='title'>"+config.title+"</span>";
-		html += "<br><br>";
-		html += config.description;
-		html += "<br><br>";
 
-		for(var i=0;i<config.qa.length;i++){
-			var qa = config.qa[i];
-			html += "<div class='qa' show='no'>";
-			html += "<div id='q' onclick='Experiment.toggleQA(this);'>"+qa.q+"</div>";
-			html += "<div id='a'>"+qa.a+"</div>";
-			html += "</div>";
+		// Paragraphs
+		for(var i=0;i<config.paragraphs.length;i++){
+			var paragraph = config.paragraphs[i];
+			html += "<p>"+paragraph+"</p>";
 		}
-		//html += 
 
-		document.getElementById("info").innerHTML = html;
+		// Create DOM
+		infoDOM.innerHTML = html;
 
 	};
 

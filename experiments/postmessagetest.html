@@ -1,0 +1,42 @@
+<style>
+body{
+	background-image: url(frog.png);
+	background-position: 50% 0px;
+	background-repeat: no-repeat;
+    transition: background-color 1s ease-in-out;
+}
+</style>
+<script>
+
+window.screenData = {
+	onScreen: false,
+	parallax: -999
+};
+window.addEventListener("message", function(event){
+
+	if(!screenData.onScreen && event.data.onScreen){
+		onEnterScreen();
+	}
+	if(screenData.onScreen && !event.data.onScreen){
+		onExitScreen();
+	}
+	screenData.onScreen = event.data.onScreen;
+	screenData.parallax = event.data.parallax;
+	if(screenData.onScreen){
+		updateParallax(screenData.parallax);
+	}
+
+}, false);
+
+function onEnterScreen(){
+	document.body.style.backgroundColor = "#4099FF";
+}
+function onExitScreen(){
+	document.body.style.backgroundColor = "#FFF";
+}
+function updateParallax(parallax){
+	var y = Math.round(parallax*500-250);
+	document.body.style.backgroundPosition = "50% "+y+"px";
+}
+
+</script>

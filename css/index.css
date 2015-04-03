@@ -1,0 +1,33 @@
+body {
+	margin: 0;
+	font-size: 20px;
+	font-family: sans-serif;
+	font-weight: 100;
+	line-height: 1.5em;
+}
+
+#essay{
+	width:100%;
+	margin: 50px auto;
+}
+
+#essay p{
+	width:800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#essay iframe{
+	display: block;
+	border: 1px solid #ddd;
+	margin:0 auto;
+}
+
+#essay iframe.highlight{
+	width:100%;
+	min-height: 100%;
+	background: #333;
+	position: relative;
+	margin: 50px 0;
+	border: none;
+}

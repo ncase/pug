@@ -9,7 +9,7 @@ Parallax Parameter:
 > 1: above viewing screen
 
 ***/
-var playables = document.querySelectorAll("#essay iframe");
+var playables = document.querySelectorAll("#article iframe");
 window.onscroll = function(){
 	var scrollY = window.pageYOffset;
 	var innerHeight = window.innerHeight;

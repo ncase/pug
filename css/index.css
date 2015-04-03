@@ -6,28 +6,42 @@ body {
 	line-height: 1.5em;
 }
 
-#essay{
-	width:100%;
-	margin: 50px auto;
+hr{
+	border: none;
+	border-top: 3px solid #ddd;
+	margin: 80px auto;
+	width: 960px;
 }
 
-#essay p{
+#article{
+	width:100%;
+}
+
+#article p{
 	width:800px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#essay iframe{
+#article iframe{
 	display: block;
-	border: 1px solid #ddd;
+	border: none;
 	margin:0 auto;
 }
 
-#essay iframe.highlight{
-	width:100%;
-	min-height: 100%;
-	background: #333;
-	position: relative;
+#article iframe.highlight{
+	width: 960px;
+	height: 600px;
 	margin: 50px 0;
-	border: none;
+}
+#article iframe.splash{
+	width:100%;
+	height: 600px;
+	background: #333;
+}
+#article iframe.intro{
+	margin-bottom: 50px;
+}
+#article iframe.outro{
+	margin-top: 50px;
 }

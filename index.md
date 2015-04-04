@@ -1,20 +1,29 @@
 <iframe class="splash intro" src="https://s3.amazonaws.com/ncase/machine/title.png" width="100%"/></iframe>
 
-Back when I was a Computer Science student, stuck in my stress & sadness... I just wished I could *kill* my emotions, represented here as a fat gecko named Sticky.
+Back when I was a Computer Science student,
+stuck in my stress & sadness...
+I just wished I could *kill* my emotions,
+represented here as a fat gecko named Sticky.
 
-<iframe class="splash intro" src="experiments/pavlov.html" width="100%"/></iframe>
+![ANIM - stress](https://s3.amazonaws.com/ncase/machine/intro_1.jpg)
 
-Why couldn't I be more like Spock or Sherlock? I'd be so much more efficient without all these darn *emotions* in the way.
+Why couldn't I be more like Spock or Sherlock?
+I'd be so much more efficient without all these darn *emotions* in the way.
 
 ![ANIM - sad from breakup](https://s3.amazonaws.com/ncase/machine/intro_2.jpg)
 
-A lot of my friends felt that way, too. So I started studying Psychology. Maybe it'd teach me how to crush my irrational self... and be a rational machine.
+A lot of my friends felt that way, too.
+So I started studying Psychology.
+Maybe it'd teach me how to crush my irrational self...
+and be a rational machine.
 
 ![ANIM - crush the gecko](https://s3.amazonaws.com/ncase/machine/intro_3.jpg)
 
 ---
 
-First, I learnt the basics of the brain. It's far more complicated in reality, of course, but let's pretend that brain cells follow one, simple rule:
+First, I learnt the basics of the brain.
+It's far more complicated in reality, of course,
+but let's pretend that brain cells follow one, simple rule:
 
 **"Cells that fire together, wire together."**
 
